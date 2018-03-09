@@ -1,6 +1,6 @@
 {
   "name": "websocketserver",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "dependencies": {
     "express": "^4.16.2",

@@ -14,6 +14,7 @@ app.get('/', function(req, res){
 app.post('/', function(req, res){
   console.log('POST /');
   io.emit('chat message', 'porta');
+  res.send("Porta");
 });
 
 io.on('connection', function(socket){
