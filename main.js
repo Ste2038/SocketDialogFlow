@@ -7,6 +7,10 @@ app.use(basicAuth({
   users: { 'admin': 'secret'}
 }));
 
+app.get('/', function(req, res){
+    res.send("ciao");
+});
+
 app.post('/', function(req, res){
   console.log('POST /');
   io.emit('chat message', 'porta');
