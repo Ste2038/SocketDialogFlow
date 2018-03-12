@@ -29,7 +29,7 @@ app.get('/', function(req, res){
 });
 
 app.post('/', function(req, res){
-  console.log('POST / ', req.body);
+  console.log('POST / ', JSON.stringify(req.body));
   io.emit('chat message', 'porta');
   io.emit('log', JSON.stringify(req.body));
   
@@ -57,3 +57,5 @@ http.listen(process.env.PORT || 3000, function(){
 app.listen(3000, function () {
   console.log('App listening on port 3000!');
 });*/
+
+/*
