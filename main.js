@@ -15,6 +15,7 @@ app.post('/', function(req, res){
   console.log('POST /');
   io.emit('chat message', 'porta');
   io.emit('log', req);
+  console.log(req);
   res.send("Porta");
 });
 
