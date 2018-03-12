@@ -4,6 +4,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 const functions = require('firebase-functions');
 const DialogflowApp = require('actions-on-google').DialogflowApp;
+
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
   console.log('Dialogflow Request headers: ' + JSON.stringify(request.headers));
   console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
@@ -27,12 +28,12 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
   console.log('POST /');
-  console.log("a");
+  console.log('a');
   console.log(req.body);
   io.emit('chat message', 'porta');
   io.emit('log', JSON.stringify(req.body));
   
-  res.send("Porta");
+  res.send(req.body);
 });
 
 io.on('connection', function(socket){
