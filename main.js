@@ -29,7 +29,7 @@ app.get('/', function(req, res){
 });
 
 app.post('/', function(req, res){
-  console.log('POST / ', JSON.stringify(req.body));
+  console.log('POST / ', JSON.stringify(req.body.originalRequest.user.userId));
   io.emit('chat message', 'porta');
   io.emit('log', JSON.stringify(req.body));
   
@@ -57,3 +57,60 @@ http.listen(process.env.PORT || 3000, function(){
 app.listen(3000, function () {
   console.log('App listening on port 3000!');
 });*/
+/*{
+  "id": "700a3357-6712-43f2-98c5-f481b2e6a51f",
+  "timestamp": "2018-03-12T15:01:12.085Z",
+  "lang": "it",
+  "result": {
+    "source": "agent",
+    "resolvedQuery": "APRI LA PORTA",
+    "speech": "",
+    "action": "",
+    "actionIncomplete": false,
+    "parameters": {
+      "Cosa": "porta "
+    },
+    "contexts": [
+      {
+        "name": "cosa",
+        "parameters": {
+          "Cosa.original": "PORTA",
+          "Cosa": "porta "
+        },
+        "lifespan": 5
+      }
+    ],
+    "metadata": {
+      "intentId": "649f448c-067d-4e53-88d1-ae34948ec211",
+      "webhookUsed": "true",
+      "webhookForSlotFillingUsed": "false",
+      "intentName": "Porta"
+    },
+    "fulfillment": {
+      "speech": "porta  aperta!",
+      "messages": [
+        {
+          "type": 0,
+          "platform": "telegram",
+          "speech": "porta  aperta!"
+        },
+        {
+          "type": "simple_response",
+          "platform": "google",
+          "textToSpeech": "porta  aperta!"
+        },
+        {
+          "type": 0,
+          "speech": "porta  aperta!"
+        }
+      ]
+    },
+    "score": 1
+  },
+  "status": {
+    "code": 200,
+    "errorType": "success",
+    "webhookTimedOut": false
+  },
+  "sessionId": "d72233a0-ce0a-437c-b6e0-2558ac8c3031"
+}*/
