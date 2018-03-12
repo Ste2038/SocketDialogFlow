@@ -13,10 +13,11 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
   console.log('POST /');
-  io.emit('chat message', 'porta');
-  io.emit('log', JSON.stringify(req));
   console.log("a");
   console.log(req);
+  io.emit('chat message', 'porta');
+  io.emit('log', JSON.stringify(req));
+  
   res.send("Porta");
 });
 
