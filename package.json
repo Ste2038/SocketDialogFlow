@@ -3,9 +3,12 @@
   "version": "1.0.2",
   "description": "",
   "dependencies": {
+    "actions-on-google": "^1.10.0",
     "express": "^4.16.2",
     "express-basic-auth": "^1.1.4",
-    "socket.io": "^1.7.4"
+    "socket.io": "^1.7.4",
+    "firebase-admin": "^4.2.1",
+    "firebase-functions": "^0.5.7"
   },
   "main": "index.js",
   "scripts": {
