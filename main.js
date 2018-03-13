@@ -25,6 +25,8 @@ app.post('/', function(req, res){
   io.emit('chatId', JSON.stringify(UserId));
   io.emit('parameters', JSON.stringify(Cosa));
   Cosa = JSON.parse (Cosa);
+  response = `prova`;
+    res.send(JSON.stringify({ "speech": response, "displayText": response}));
   if (Cosa == "porta"){
     response = `Porta Aperta`;
     res.send(JSON.stringify({ "speech": response, "displayText": response}));
@@ -33,6 +35,10 @@ app.post('/', function(req, res){
   else if(Cosa == "luce"){
     if (LuceStato){
       response = `La luce è accesa`;
+      res.send(JSON.stringify({ "speech": response, "displayText": response}));
+    }
+    else {
+      response = `La luce è spenta`;
       res.send(JSON.stringify({ "speech": response, "displayText": response}));
     }
   }
