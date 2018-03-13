@@ -24,7 +24,7 @@ app.post('/', function(req, res){
   Cosa = req.body.result.parameters.Cosa;
   io.emit('chatId', JSON.stringify(UserId));
   io.emit('parameters', JSON.stringify(Cosa));
-  Cosa = JSON.parse (Cosa);
+  Cosa = JSON.parse(Cosa);
   response = `prova`;
     res.send(JSON.stringify({ "speech": response, "displayText": response}));
   if (Cosa == "porta"){
