@@ -17,7 +17,8 @@ app.post('/', function(req, res){
   console.log('POST / ', JSON.stringify(req.body));
   io.emit('chatId', JSON.stringify(req.body.originalRequest.data.user.userId));
   io.emit('parameters', JSON.stringify(req.body.result.parameters.Cosa));
-  res.send(req.body);
+  response = "This is a sample response from your webhook!"
+  res.send(JSON.stringify({ "speech": response, "displayText": response}));
 });
 
 io.on('connection', function(socket){
