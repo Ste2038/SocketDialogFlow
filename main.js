@@ -5,7 +5,9 @@ var io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 
 let UserId,
-    Cosa;
+    Cosa,
+    Ask,
+    OnOff;
 
 let LuceStato = false;
 
@@ -22,9 +24,10 @@ app.post('/', function(req, res){
   console.log('POST / ', JSON.stringify(req.body));
   UserId = JSON.stringify(req.body.originalRequest.data.user.userId);
   Cosa = JSON.stringify(req.body.result.parameters.Cosa);
+  Ask = JSON.stringify(req.body.result.parameters.Ask);
+  OnOff = JSON.stringify(req.body.result.parameters.OnOff);
   io.emit('chatId', UserId);
   io.emit('parameters', Cosa);
-  Cosa = JSON.parse(Cosa);
   
   if (Cosa == "porta"){
     response = `Porta Aperta`;
@@ -32,14 +35,19 @@ app.post('/', function(req, res){
   }
 
   else if(Cosa == "luce"){
-    if (LuceStato){
-      response = `La luce è accesa`;
-      res.send(JSON.stringify({ "speech": response, "displayText": response}));
-    }
+    if (Ask == '?'){
+      if (LuceStato){
+        response = `La luce è accesa`;
+        res.send(JSON.stringify({ "speech": response, "displayText": response}));
+      }
+      else {
+        response = `La luce è spenta`;
+        res.send(JSON.stringify({ "speech": response, "displayText": response}));
+      }
+    }/*
     else {
-      response = `La luce è spenta`;
-      res.send(JSON.stringify({ "speech": response, "displayText": response}));
-    }
+      
+    }*/
   }
 });
 
