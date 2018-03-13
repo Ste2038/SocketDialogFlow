@@ -26,7 +26,7 @@ app.post('/', function(req, res){
   Cosa = JSON.stringify(req.body.result.parameters.Cosa);
   Ask = JSON.stringify(req.body.result.parameters.Ask);
   OnOff = JSON.stringify(req.body.result.parameters.OnOff);
-  
+  console.log(Cosa);
   if (Cosa == "porta"){
     console.log("PORTA");
     io.emit('chatId', UserId);
