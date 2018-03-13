@@ -4,6 +4,11 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 const bodyParser = require('body-parser');
 
+let UserId,
+    Cosa;
+
+let LuceStato = false;
+
 app.use(bodyParser.json());
 app.use(basicAuth({
   users: { 'admin': 'secret'}
@@ -15,10 +20,22 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
   console.log('POST / ', JSON.stringify(req.body));
-  io.emit('chatId', JSON.stringify(req.body.originalRequest.data.user.userId));
-  io.emit('parameters', JSON.stringify(req.body.result.parameters.Cosa));
-  response = "This is a sample response from your webhook!"
-  res.send(JSON.stringify({ "speech": response, "displayText": response}));
+  UserId = req.body.originalRequest.data.user.userId;
+  Cosa = req.body.result.parameters.Cosa;
+  io.emit('chatId', JSON.stringify(UserId));
+  io.emit('parameters', JSON.stringify(Cosa));
+  Cosa = JSON.parse (Cosa);
+  if (Cosa == "porta"){
+    response = `Porta Aperta`;
+    res.send(JSON.stringify({ "speech": response, "displayText": response}));
+  }
+
+  else if(Cosa == "luce"){
+    if (LuceStato){
+      response = `La luce è accesa`;
+      res.send(JSON.stringify({ "speech": response, "displayText": response}));
+    }
+  }
 });
 
 io.on('connection', function(socket){
@@ -35,4 +52,9 @@ io.on('connection', function(socket){
 
 http.listen(process.env.PORT || 3000, function(){
   console.log('listening');
+});
+
+socket.on('LuceStat', function(Stato){
+  LuceStato = Stato;
+  console.log('luce ', LuceStato);
 });
