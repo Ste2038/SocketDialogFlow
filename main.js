@@ -54,13 +54,14 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
+  
+  socket.on('LuceStat', function(Stato){
+    LuceStato = Stato;
+    console.log('luce ', LuceStato);
+  });
 });
 
 http.listen(process.env.PORT || 3000, function(){
   console.log('listening');
 });
 
-socket.on('LuceStat', function(Stato){
-  LuceStato = Stato;
-  console.log('luce ', LuceStato);
-});
