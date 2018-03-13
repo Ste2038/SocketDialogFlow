@@ -51,12 +51,12 @@ app.post('/', function(req, res){
       if (LuceStato){
         io.emit('chatId', UserId);
         io.emit('parameters', Cosa); 
-        res.send(JSON.stringify({ "speech": "Ho acceso la luce", "displayText": "Ho acceso la luce"}));
+        res.send(JSON.stringify({ "speech": "Ho spento la luce", "displayText": "Ho spento la luce"}));
       }
       else {
         io.emit('chatId', UserId);
         io.emit('parameters', Cosa);
-        res.send(JSON.stringify({ "speech": "Ho spento la luce", "displayText": "Ho spento la luce"}));
+        res.send(JSON.stringify({ "speech": "Ho acceso la luce", "displayText": "Ho acceso la luce"}));
       }
       
     }
