@@ -28,6 +28,7 @@ app.post('/', function(req, res){
   OnOff = JSON.stringify(req.body.result.parameters.OnOff);
   
   if (Cosa == "porta"){
+    console.log("PORTA");
     io.emit('chatId', UserId);
     io.emit('parameters', Cosa);
     response = `Porta Aperta`;
