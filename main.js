@@ -26,8 +26,6 @@ app.post('/', function(req, res){
   Cosa = JSON.stringify(req.body.result.parameters.Cosa);
   Ask = JSON.stringify(req.body.result.parameters.Ask);
   OnOff = JSON.stringify(req.body.result.parameters.OnOff);
-  io.emit('chatId', UserId);
-  io.emit('parameters', Cosa);
   
   if (Cosa == "porta"){
     response = `Porta Aperta`;
@@ -44,10 +42,21 @@ app.post('/', function(req, res){
         response = `La luce è spenta`;
         res.send(JSON.stringify({ "speech": response, "displayText": response}));
       }
-    }/*
+    }
     else {
+      console.log("Accesa");
+      if (LuceStato){
+        io.emit('chatId', UserId);
+        io.emit('parameters', Cosa); 
+        res.send(JSON.stringify({ "speech": "Ho acceso la luce", "displayText": "Ho acceso la luce"}));
+      }
+      else {
+        io.emit('chatId', UserId);
+        io.emit('parameters', Cosa);
+        res.send(JSON.stringify({ "speech": "Ho spento la luce", "displayText": "Ho spento la luce"}));
+      }
       
-    }*/
+    }
   }
 });
 
