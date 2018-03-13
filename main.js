@@ -25,8 +25,7 @@ app.post('/', function(req, res){
   io.emit('chatId', UserId);
   io.emit('parameters', Cosa);
   Cosa = JSON.parse(Cosa);
-  response = `prova`;
-    res.send(JSON.stringify({ "speech": response, "displayText": response}));
+  
   if (Cosa == "porta"){
     response = `Porta Aperta`;
     res.send(JSON.stringify({ "speech": response, "displayText": response}));
