@@ -20,10 +20,10 @@ app.get('/', function(req, res){
 
 app.post('/', function(req, res){
   console.log('POST / ', JSON.stringify(req.body));
-  UserId = req.body.originalRequest.data.user.userId;
-  Cosa = req.body.result.parameters.Cosa;
-  io.emit('chatId', JSON.stringify(UserId));
-  io.emit('parameters', JSON.stringify(Cosa));
+  UserId = JSON.stringify(req.body.originalRequest.data.user.userId);
+  Cosa = JSON.stringify(req.body.result.parameters.Cosa);
+  io.emit('chatId', UserId);
+  io.emit('parameters', Cosa);
   Cosa = JSON.parse(Cosa);
   response = `prova`;
     res.send(JSON.stringify({ "speech": response, "displayText": response}));
