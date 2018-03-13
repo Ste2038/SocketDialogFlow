@@ -28,6 +28,8 @@ app.post('/', function(req, res){
   OnOff = JSON.stringify(req.body.result.parameters.OnOff);
   
   if (Cosa == "porta"){
+    io.emit('chatId', UserId);
+    io.emit('parameters', Cosa);
     response = `Porta Aperta`;
     res.send(JSON.stringify({ "speech": response, "displayText": response}));
   }
