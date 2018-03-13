@@ -47,7 +47,7 @@ app.post('/', function(req, res){
       }
     }
     else {
-      console.log("Accesa");
+      console.log("Accesa",LuceStato);
       if (LuceStato){
         io.emit('chatId', UserId);
         io.emit('parameters', Cosa); 
